@@ -1,0 +1,208 @@
+@mixin transform($value) {
+  -webkit-transform: $value;
+  -moz-transform: $value;
+  -o-transform: $value;
+  transform: $value;
+}
+
+@mixin border-radius($value) {
+  -moz-border-radius: $value;
+  -webkit-border-radius: $value;
+  border-radius: $value;
+}
+
+@mixin box-shadow($value) {
+  -webkit-box-shadow: $value;
+  -moz-box-shadow: $value;
+  box-shadow: $value;
+}
+
+@mixin transition($value) {
+  -webkit-transition: $value;
+  -moz-transition: $value;
+  -o-transition: $value;
+  transition: $value;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  color: #333333;
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1;
+background:#A00000;
+  
+  .container {
+    max-width: 500px;
+    width: 100%;
+    padding: 0 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include transform( translate(-50%, -50%) );
+    
+    h1 {
+      color: #fff;
+      font-weight: 400;
+      font-size: 32px;
+      line-height: 1;
+      text-align: center;
+      text-transform: uppercase;
+      margin: 0 0 30px;
+    }
+    
+    .todo-list {
+      .todo-list__head {
+        position: relative;
+        
+        &:before,
+        &:after {
+          content: "";
+          display: table;
+        }
+        
+        &:after {
+          clear: both;
+        }
+        
+        .todo-list-head__text-input {
+          position: relative;
+          width: 100%;
+          height: 40px;
+          line-height: 40px;
+          font-weight: 400;
+          font-style: italic;
+          margin: 0 0 10px;
+          border: 0;
+          padding: 0 14px;
+          outline: 0;
+          color: #000000;
+          background: #f1f1f1;
+          @include border-radius( 2px );
+          @include box-shadow( 0px 2px 2px 0px rgba( 204, 204, 204, 0.5) );
+        }
+        
+        ::-webkit-input-placeholder {
+          color: #000000;
+          opacity: 1;        
+        }
+
+        :-moz-placeholder {
+          color: #000000;
+          opacity: 1;        
+        }
+
+        ::-moz-placeholder {
+          color: #000000;
+          opacity: 1;        
+        }
+
+        :-ms-input-placeholder {  
+          color: #000000;
+          opacity: 1;
+        }        
+        
+        .toto-list-head__submit {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 40px;
+          height: 40px;
+          line-height: 40px;
+          text-align: center;
+          cursor: pointer;
+          outline: 0;
+        }
+      }
+      .todo-list__items {
+        margin: 0;
+        padding: 0;
+        
+        li {
+          position: relative;
+          height: 40px;
+          line-height: 40px;
+          list-style: none;
+          margin: 0 0 10px;
+          padding: 0 20px 0 40px;
+          color: black!important;
+          overflow: hidden;
+          background: #f1f1f1;
+          @include border-radius( 2px );
+          @include box-shadow( 0px 2px 2px 0px rgba( 204, 204, 204, 0.5) );   
+          &.completed {
+            color: green!important;
+            text-decoration: line-through;
+            
+            span {
+              background: #79BD9A;
+            }
+          }
+          
+          span {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            width: 24px;
+            height: 24px;
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 400;
+            font-style: italic;
+            line-height: 24px;
+            text-align: center;
+            display: block;
+            background: #453E50;
+            @include border-radius( 100% );
+          }
+          
+          .todo-list-items__trash {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            display: block;
+            font-size: 16px;
+            line-height: 40px;
+            text-align: center;
+            cursor: pointer;
+            @include transition( right 400ms ease-in-out );
+          }
+          
+          .todo-list-item__complete {
+            position: absolute;
+            top: 0;
+            right: -40px;
+            width: 40px;
+            height: 40px;
+            display: block;
+            font-size: 16px;
+            line-height: 40px;
+            text-align: center;
+            cursor: pointer;
+            @include transition( right 400ms ease-in-out );
+          }
+          
+          &:hover {
+            .todo-list-item__trash {
+              right: 40px;
+            }
+            
+            .todo-list-item__complete {
+              right: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
